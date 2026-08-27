@@ -1,0 +1,18 @@
+# Environment files
+.env
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Runtime data (Kontaktformular SQLite/JSON-Vault, Consent-Receipts, ProvenExpert-Cache)
+storage/*.db
+storage/*.db-*
+storage/contact_vault/
+storage/.ratelimit/
+storage/provenexpert/

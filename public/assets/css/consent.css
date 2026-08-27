@@ -1,0 +1,84 @@
+:root {
+  --cc-font-family: var(--font-sans, system-ui, sans-serif);
+  --cc-bg: #fffdfa;
+  --cc-primary-color: #152033;
+  --cc-secondary-color: #5f625f;
+  --cc-btn-primary-bg: #8c6a4f;
+  --cc-btn-primary-color: #fff;
+  --cc-btn-primary-hover-bg: #72523a;
+  --cc-btn-secondary-bg: #f1ece6;
+  --cc-btn-secondary-color: #152033;
+  --cc-btn-secondary-hover-bg: #e7ded5;
+  /* Sichtbarer Rahmen, damit der Ablehnen-Button auf der hellen Karte klar
+     erkennbar bleibt und nicht wie ausgegraut wirkt. */
+  --cc-btn-secondary-border-color: #c9b8a5;
+  --cc-btn-secondary-hover-border-color: #b6a086;
+  /* Ablehnen muss gleichwertig zu Akzeptieren wirken (DSK-Orientierungshilfe
+     11/2024, VG Hannover 03/2025) — eigene volle Füllfarbe statt der
+     "secondary"-Optik, die es sich sonst mit dem Einstellungen-Button teilt. */
+  --cc-btn-necessary-bg: var(--charcoal);
+  --cc-btn-necessary-color: #fff;
+  --cc-btn-necessary-hover-bg: var(--charcoal-dark);
+  --cc-toggle-on-bg: #8c6a4f;
+  --cc-cookie-category-block-bg: #f7f3ee;
+  --cc-cookie-category-block-hover-bg: #f0e9e1;
+  --cc-separator-border-color: #ded7cf;
+  --cc-footer-border-color: #ded7cf;
+  /* Leicht abgedunkelter, markenfarbener Hintergrund statt Standard-Schwarz — genug
+     Fokus fürs Popup, ohne wie eine erzwungene Sperre zu wirken. */
+  --cc-overlay-bg: rgba(21, 32, 51, .38);
+}
+
+#cc-main {
+  font-size: 17px;
+}
+
+#cc-main .cm,
+#cc-main .pm {
+  border: 1px solid #ded7cf;
+  border-radius: 1rem;
+  box-shadow: 0 25px 60px rgba(21, 32, 51, .28);
+}
+
+#cc-main .cm__title {
+  font-size: 1.2em;
+}
+
+#cc-main .cm__btn,
+#cc-main .pm__btn {
+  border-radius: .65rem;
+  min-height: 2.8rem;
+}
+
+#cc-main .cm__btn[data-role="necessary"],
+#cc-main .pm__btn[data-role="necessary"] {
+  background: var(--cc-btn-necessary-bg);
+  border-color: var(--cc-btn-necessary-bg);
+  color: var(--cc-btn-necessary-color);
+}
+
+#cc-main .cm__btn[data-role="necessary"]:hover,
+#cc-main .cm__btn[data-role="necessary"]:focus-visible,
+#cc-main .pm__btn[data-role="necessary"]:hover,
+#cc-main .pm__btn[data-role="necessary"]:focus-visible {
+  background: var(--cc-btn-necessary-hover-bg);
+  border-color: var(--cc-btn-necessary-hover-bg);
+}
+
+#cc-main .section__toggle:focus-visible,
+#cc-main button:focus-visible,
+#cc-main a:focus-visible {
+  outline: 3px solid rgba(140, 106, 79, .4);
+  outline-offset: 3px;
+}
+
+#cc-main .pm__section-desc small {
+  display: block;
+  line-height: 1.55;
+  margin-top: .45rem;
+}
+
+@media (max-width: 640px) {
+  #cc-main .cm { width: calc(100% - 1rem); max-width: none; }
+  #cc-main .cm__btn-group { display: grid; grid-template-columns: 1fr; }
+}
