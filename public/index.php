@@ -5,8 +5,8 @@ if (empty($_SESSION['csrf_token'])) $_SESSION['csrf_token'] = bin2hex(random_byt
 $ROOT = __DIR__;
 require_once dirname($ROOT) . '/app/provenexpert.php';
 $peTrustLine = kk_provenexpert_trust_line();
-$pageTitle = 'Küchenmodernisierung im Hunsrück | KüchenFit vom Tischlermeister';
-$pageDescription = 'Küche modernisieren im Hunsrück: KüchenFit prüft zuerst den Bestand und ordnet ein, ob Frontentausch, neue Arbeitsplatte, Küchenumbau oder Neuplanung der richtige Weg ist.';
+$pageTitle = 'Küche modernisieren im Hunsrück | KüchenFit Sohren';
+$pageDescription = 'Küche im Hunsrück modernisieren: KüchenFit prüft erst den Bestand und sagt, ob Frontentausch, neue Arbeitsplatte, Umbau oder Neuplanung passt.';
 $canonicalUrl = 'https://kuechenfit.de/';
 $robots = 'index,follow';
 $skipSiteCss = true; // Seite ist komplett eigenständig gestylt (modernisierung-lp.css), braucht kein Haupt-Stylesheet.
@@ -40,7 +40,7 @@ $faqItems = [
     <div class="ms-wrap ms-hero__inner">
       <p class="ms-eyebrow">Küchenmodernisierung im Hunsrück</p>
       <h1>Küche im Hunsrück modernisieren &ndash; erst prüfen, dann erneuern</h1>
-      <p class="ms-lead">KüchenFit prüft Korpusse, Aufteilung und Anschlüsse. Danach wissen Sie, ob Frontentausch, neue Arbeitsplatte, Umbau oder Neuplanung sinnvoller ist.</p>
+      <p class="ms-lead">Wenn Sie Ihre Küche modernisieren möchten, prüft KüchenFit zuerst Korpusse, Aufteilung und Anschlüsse. Danach wissen Sie, ob Frontentausch, neue Arbeitsplatte, Umbau oder Neuplanung sinnvoller ist.</p>
       <p class="ms-trust">Persönliche Prüfung durch Daniel Klas · Tischlermeister seit 2006<?php if ($peTrustLine !== ''): ?> · <a href="https://kuechen-klas.de/kundenstimmen/"><?= htmlspecialchars($peTrustLine, ENT_QUOTES, 'UTF-8') ?></a><?php endif; ?></p>
       <a class="ms-button ms-button--light" href="#modernisierungscheck" data-track="kuechenfit_hero_check">Küche fachlich prüfen lassen</a>
     </div>
@@ -51,7 +51,7 @@ $faqItems = [
       <div class="ms-wrap">
         <p class="ms-eyebrow">Kurzer Modernisierungs-Check</p>
         <h2>Was ist bei Ihrer Küche der richtige Weg?</h2>
-        <p class="ms-copy">Vier kurze Fragen für eine erste Einordnung: gezielte Renovierung, Küchenumbau oder lieber mit einer Neuplanung vergleichen.</p>
+        <p class="ms-copy">Vier kurze Fragen für eine erste Einordnung: Küche gezielt modernisieren, umbauen oder lieber mit einer Neuplanung vergleichen.</p>
         <div class="ms-quiz" data-fit-quiz>
           <div class="ms-quiz-progress"><div class="ms-quiz-progress__bar" data-quiz-progress></div></div>
           <div class="ms-quiz-step" data-quiz-step="1">
