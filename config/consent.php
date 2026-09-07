@@ -7,7 +7,7 @@ return [
         'version' => '3.1.0',
     ],
     'revision' => 3,
-    'material_version' => '2026-08-12.2',
+    'material_version' => '2026-08-29.1',
     'retention_days' => 1095,
     'cookie' => [
         'name' => 'kk_consent',
@@ -16,12 +16,14 @@ return [
     'mtm' => [
         // Öffentliche Container-ID, kein Zugangstoken. Der Container wird
         // ausschließlich nach Einwilligung in den Provider Matomo geladen.
-        'container' => '1ZzpGfcK',
+        // Eigener Container für kuechenfit.de (nicht mehr der geteilte aus
+        // dem Hauptprojekt). Basis-URL: siehe app/consent.php.
+        'container' => 'D7C9Xhjf',
     ],
     'categories' => [
         'necessary' => [
             'label' => 'Notwendig',
-            'description' => 'Erforderlich für grundlegende Funktionen und deine Datenschutzeinstellungen.',
+            'description' => 'Erforderlich für grundlegende Funktionen und Ihre Datenschutzeinstellungen.',
             'read_only' => true,
         ],
         'analytics' => [
@@ -31,12 +33,12 @@ return [
         ],
         'functional' => [
             'label' => 'Externe Funktionen',
-            'description' => 'Lädt externe Inhalte nur, wenn du sie wirklich nutzen möchtest.',
+            'description' => 'Lädt externe Inhalte nur, wenn Sie sie wirklich nutzen möchten.',
             'read_only' => false,
         ],
         'marketing' => [
             'label' => 'Marketing',
-            'description' => 'Misst den Erfolg unserer Werbung. Du kannst jeden Anbieter einzeln auswählen.',
+            'description' => 'Misst den Erfolg unserer Werbung. Sie können jeden Anbieter einzeln auswählen.',
             'read_only' => false,
         ],
     ],
@@ -59,12 +61,12 @@ return [
             'managed_by' => 'component',
             'name' => 'Google Maps',
             'purpose' => 'Zeigt den Standort und erleichtert die Anfahrtsplanung.',
-            'data' => 'IP-Adresse, aufgerufene Seite und technisch erforderliche Verbindungsdaten; abhängig von deinen Google-Einstellungen weitere Nutzungsdaten.',
+            'data' => 'IP-Adresse, aufgerufene Seite und technisch erforderliche Verbindungsdaten; abhängig von Ihren Google-Einstellungen weitere Nutzungsdaten.',
             'recipient' => 'Google Ireland Limited und verbundene Google-Unternehmen.',
             'privacy_url' => '/datenschutz/',
             'third_country' => 'Eine Verarbeitung außerhalb des Europäischen Wirtschaftsraums kann nicht ausgeschlossen werden.',
             'storage' => 'Google kann Cookies oder vergleichbare Browser-Speicher verwenden.',
-            'retention' => 'Die Speicherdauer richtet sich nach Dienst, Google-Konto und deinen Google-Einstellungen.',
+            'retention' => 'Die Speicherdauer richtet sich nach Dienst, Google-Konto und Ihren Google-Einstellungen.',
             'cookies' => [],
         ],
         'google_ads' => [

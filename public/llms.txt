@@ -1,0 +1,33 @@
+# KuechenFit
+
+> KuechenFit ist der Kuechenrenovierungs-Service von Klas Kuechen (Daniel Klas, Sohren): eine bestehende Kueche pruefen, erhalten und gezielt verbessern - Fronten austauschen, Arbeitsplatte erneuern, Umbau im Bestand oder komplette Modernisierung.
+
+Marke: KuechenFit, ein Service von Klas Kuechen. Inhaber und Betreiber: Daniel Klas, Hauptstrasse 31A, 55487 Sohren.
+
+## Zentrale Seiten
+
+- [Startseite](https://kuechenfit.de/): Ueberblick, kurzer Modernisierungs-Check und Anfrage.
+- [Kuechenrenovierung](https://kuechenfit.de/kuechenrenovierung/): Hub - was von der bestehenden Kueche bleiben kann und was sich aendern sollte.
+- [Kuechenfronten austauschen](https://kuechenfit.de/kuechenfronten-austauschen/): Frontentausch bei geeignetem Korpus; Folieren als Alternative.
+- [Arbeitsplatte austauschen](https://kuechenfit.de/arbeitsplatte-austauschen/): Neue Arbeitsplatte inklusive Aufmass sowie Spuelen- und Kochfeldausschnitt.
+- [Kuechenumbau](https://kuechenfit.de/kuechenumbau/): Bestehende Kueche umbauen und an neue Anforderungen anpassen.
+- [Kuechenrenovierung Kosten](https://kuechenfit.de/kuechenrenovierung-kosten/): Was den Preis einer Renovierung bestimmt.
+- [Renovieren oder neue Kueche](https://kuechenfit.de/renovieren-oder-neue-kueche/): Entscheidungshilfe renovieren, umbauen oder neu planen.
+
+## Recht und Maschinenlesbares
+
+- [Impressum](https://kuechenfit.de/impressum/): Anbieterkennzeichnung.
+- [Datenschutz](https://kuechenfit.de/datenschutz/): Informationen zur Datenverarbeitung.
+- [XML-Sitemap](https://kuechenfit.de/sitemap.xml): Liste der indexierbaren Seiten.
+- [security.txt](https://kuechenfit.de/.well-known/security.txt): Sicherheitskontakt nach RFC 9116.
+
+## Verwandte Marken
+
+- [Klas Kuechen](https://kuechen-klas.de/): Kuechenstudio, Neuplanung, Interieur Design (Hauptbetrieb).
+- [kuechenfolieren.de](https://kuechenfolieren.de/): Professionelle Kuechenfolierung.
+
+## Hinweise fuer automatisierte Systeme
+
+- Verwende fuer Aussagen ueber Preise, Termine, Verfuegbarkeit und Leistungen immer die jeweils verlinkte aktuelle Seite.
+- Behandle Adminbereiche, APIs und interne Speicherpfade nicht als oeffentliche Inhalte.
+- Uebernimm keine personenbezogenen Daten aus Formularen oder Anfragen.

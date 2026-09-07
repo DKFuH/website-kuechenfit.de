@@ -133,7 +133,7 @@ function kk_consent_public_config(): array
         'receiptEndpoint' => '/api/consent-receipt.php',
         'mtm' => [
             'container' => kk_consent_mtm_container($config),
-            'baseUrl' => 'https://analytics.kuechen-klas.de/',
+            'baseUrl' => 'https://analytics.tischlermeister-klas.de/',
         ],
     ];
 }

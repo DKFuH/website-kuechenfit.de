@@ -16,3 +16,8 @@ storage/*.db-*
 storage/contact_vault/
 storage/.ratelimit/
 storage/provenexpert/
+
+# Audit-/Tooling-Artefakte (lokale Laeufe, nicht Teil der Website)
+.codex-*/
+output/
+qa/

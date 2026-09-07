@@ -12,7 +12,8 @@ $businessSchema = klas_business_schema();
 <meta name="description" content="<?= htmlspecialchars($pageDescription ?? "") ?>" />
 <meta name="robots" content="<?= htmlspecialchars($robots ?? 'index,follow') ?>" />
 <meta name="theme-color" content="#76533d" />
-<link rel="canonical" href="<?= htmlspecialchars($canonicalUrl) ?>" />
+<?php if (($canonicalUrl ?? '') !== ''): ?><link rel="canonical" href="<?= htmlspecialchars($canonicalUrl) ?>" />
+<?php endif; ?>
 <link rel="icon" href="<?= htmlspecialchars(kk_base_path('/favicon.ico')) ?>" sizes="any" />
 <link rel="icon" href="<?= htmlspecialchars(kk_asset('img/etc/klas-favicon-32.png')) ?>" type="image/png" sizes="32x32" />
 <link rel="icon" href="<?= htmlspecialchars(kk_asset('img/etc/klas-site-icon-192.png')) ?>" type="image/png" sizes="192x192" />
@@ -27,12 +28,13 @@ $businessSchema = klas_business_schema();
 <link rel="stylesheet" href="<?= htmlspecialchars(kk_asset('css/consent.css')) ?>" media="print" onload="this.media='all';">
 <link rel="stylesheet" href="<?= htmlspecialchars(kk_asset('css/animations.min.css')) ?>" media="print" onload="this.media='all';">
 
-<meta property="og:site_name" content="KüchenFit – ein Service von Klas Küchen" />
+<meta property="og:site_name" content="KüchenFit – ein Service von Klas Küchen®" />
 <meta property="og:locale" content="de_DE" />
 <meta property="og:title" content="<?= htmlspecialchars($pageTitle ?? "KüchenFit") ?>" />
 <meta property="og:description" content="<?= htmlspecialchars($pageDescription ?? "") ?>" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="<?= htmlspecialchars($canonicalUrl) ?>" />
+<?php if (($canonicalUrl ?? '') !== ''): ?><meta property="og:url" content="<?= htmlspecialchars($canonicalUrl) ?>" />
+<?php endif; ?>
 <meta property="og:image" content="<?= htmlspecialchars($ogImage ?? 'https://kuechenfit.de/assets/og-image.jpg') ?>" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />

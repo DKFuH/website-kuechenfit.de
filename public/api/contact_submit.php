@@ -218,14 +218,14 @@ function sendContactMail(
 function leadPrepBullets(string $topic): array
 {
   return [
-    'Ein paar Fotos vom aktuellen Zustand der Küche',
+    'Antworte auf diese E-Mail und häng ein paar Fotos vom aktuellen Zustand der Küche an',
+    'Hilfreich: Gesamtaufnahme sowie Fotos von Fronten, Arbeitsplatte und beschädigten Stellen',
     'Ungefähre Maße der Bereiche, die sich verändern sollen',
-    'Was dich an der Küche aktuell am meisten stört',
   ];
 }
 
 function sendLeadConfirmationMail(
-  string $fromEmail,
+  string $replyToEmail,
   string $name,
   string $email,
   string $topic,
@@ -245,7 +245,7 @@ function sendLeadConfirmationMail(
   $lines[] = '';
   $lines[] = 'danke für deine Anfrage' . ($topic !== '' ? ' zu "' . $topic . '"' : '') . '. Ich melde mich persönlich bei dir' . ($timeframe !== '' ? ' – dein gewünschter Zeitrahmen (' . $timeframe . ') ist bei mir angekommen.' : '.');
   $lines[] = '';
-  $lines[] = 'Damit unser erstes Gespräch möglichst schnell konkret wird, hilft es, wenn du Folgendes schon mal bereithältst:';
+  $lines[] = 'Am einfachsten schickst du uns deine Küchenfotos direkt als Antwort auf diese E-Mail. Damit unser erstes Gespräch schnell konkret wird, hilft:';
   foreach (leadPrepBullets($topic) as $bullet) {
     $lines[] = '- ' . $bullet;
   }
@@ -259,8 +259,10 @@ function sendLeadConfirmationMail(
   $lines[] = kk_business_letter_footer();
   $body = implode("\n", $lines);
 
-  $safeFrom = sanitizeHeaderValue($fromEmail);
-  return kk_send_mail($email, $greetingName, $subject, $body, $safeFrom, '', 'Daniel Klas – KüchenFit');
+  // Reply-To bewusst auf das betreute Postfach (CONTACT_TO_EMAIL): Foto-Antworten
+  // der Interessenten sollen dort landen, nicht im No-Reply-Absender.
+  $safeReplyTo = sanitizeHeaderValue($replyToEmail);
+  return kk_send_mail($email, $greetingName, $subject, $body, $safeReplyTo, '', 'Daniel Klas – KüchenFit');
 }
 
 function sendContactWebhook(string $webhookUrl, string $bearerToken, array $payload): array {
@@ -691,7 +693,7 @@ if (!$mailResult['ok'] && !$disableMailForRequest) {
 // ════════════════════════════════════════════════════════════════════════════
 
 if (!$disableMailForRequest && !$isSuspectedSpam) {
-  $leadMailResult = sendLeadConfirmationMail($CONTACT_FROM_EMAIL, $name, $email, $topic, $timeframe, $requestId);
+  $leadMailResult = sendLeadConfirmationMail($CONTACT_TO_EMAIL, $name, $email, $topic, $timeframe, $requestId);
   if (!$leadMailResult['ok']) {
     log_event('ERROR', 'Lead confirmation mail failed', ['request_id' => $requestId, 'error' => $leadMailResult['error']]);
   }

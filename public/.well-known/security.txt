@@ -1,0 +1,5 @@
+Contact: mailto:security@kuechen-klas.de
+Expires: 2027-08-29T00:00:00Z
+Preferred-Languages: de, en
+Canonical: https://kuechenfit.de/.well-known/security.txt
+Policy: https://kuechen-klas.de/security/

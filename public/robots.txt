@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /partials/
+Disallow: /404.php
+
+# Gilt auch fuer Such- und KI-Crawler wie OAI-SearchBot, GPTBot,
+# ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot und
+# Google-Extended. Oeffentliche Inhalte duerfen gecrawlt werden.
 
 Sitemap: https://kuechenfit.de/sitemap.xml

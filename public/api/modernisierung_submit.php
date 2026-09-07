@@ -40,7 +40,7 @@ if (ms_text($_POST['website'] ?? '', 200) !== '' || ms_text($_POST['hp_field'] ?
     ms_respond(200, ['ok' => true, 'status' => 'accepted']);
 }
 
-$services = ['Folierung', 'Frontentausch', 'Arbeitsplatte', 'Spüle und Armatur', 'Nischenrückwand', 'Licht und Geräte', 'Stauraum und Funktion', 'Komplettmodernisierung', 'Entscheidungscheck'];
+$services = ['Folierung', 'Frontentausch', 'Arbeitsplatte', 'Spüle und Armatur', 'Nischenrückwand', 'Licht und Geräte', 'Stauraum und Funktion', 'Komplettmodernisierung', 'Entscheidungscheck', 'Bestandsprüfung'];
 $timeframes = ['Sofort', '1–3 Monate', '3–6 Monate', 'Später', 'Noch offen'];
 $service = ms_text($_POST['service'] ?? '', 80);
 $timeframe = ms_text($_POST['zeitpunkt'] ?? '', 50);

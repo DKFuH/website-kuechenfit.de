@@ -4,14 +4,22 @@
 # Trailing Slash Policy: IMMER MIT SLASH (z.B. /impressum/)
 # ============================================================================
 
+# Fallback-DirectoryIndex, falls der Hoster index.php nicht standardmaessig auffuehrt
+DirectoryIndex index.php index.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # www. -> ohne www., dann HTTP -> HTTPS
+  # www. -> ohne www.
   RewriteCond %{HTTP_HOST} ^www\.kuechenfit\.de$ [NC]
   RewriteRule ^ https://kuechenfit.de%{REQUEST_URI} [L,R=301,NE]
 
+  # HTTP -> HTTPS. Proxy-tauglich: tecspace terminiert TLS am Edge, daher ist
+  # %{HTTPS} auch bei echten HTTPS-Requests "off". Ohne die X-Forwarded-Pruefung
+  # entsteht eine Endlos-Weiterleitung (sichtbar als 302 / "too many redirects").
   RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteCond %{HTTP:X-Forwarded-SSL} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
   # Datei existiert -> direkt ausliefern

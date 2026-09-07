@@ -35,18 +35,18 @@
       try {
         const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         const data = await response.json().catch(() => ({}));
-        if (!response.ok || !data.ok) throw new Error(data.message || 'Die Anfrage konnte nicht übermittelt werden. Bitte versuche es erneut.');
+        if (!response.ok || !data.ok) throw new Error(data.message || 'Die Anfrage konnte nicht übermittelt werden. Bitte versuchen Sie es erneut.');
         let prepBullets = [];
         try { prepBullets = JSON.parse(form.dataset.prepBullets || '[]'); } catch { prepBullets = []; }
         const list = prepBullets.length
           ? `<ul class="ms-message__list">${prepBullets.map((item) => `<li>${item}</li>`).join('')}</ul>`
           : '';
-        message.innerHTML = `<span class="ms-message__title">Vielen Dank. Wir melden uns persönlich bei dir.</span><span class="ms-message__lead">Eine Bestätigung ist unterwegs an deine E-Mail-Adresse. Damit das Gespräch schnell konkret wird, hilft es, wenn du Folgendes schon mal bereithältst:</span>${list}`;
+        message.innerHTML = `<span class="ms-message__title">Vielen Dank. Wir melden uns persönlich bei Ihnen.</span><span class="ms-message__lead">Eine Bestätigungs-E-Mail ist unterwegs. Antworten Sie darauf mit Ihren Küchenfotos – dann wird das Gespräch schnell konkret:</span>${list}`;
         message.classList.add('is-success');
         form.reset();
         track('form_submit_success', { form_id: form.dataset.formId || 'modernisierung' });
       } catch (error) {
-        message.textContent = error instanceof Error ? error.message : 'Bitte versuche es erneut.';
+        message.textContent = error instanceof Error ? error.message : 'Bitte versuchen Sie es erneut.';
         track('form_submit_error', { form_id: form.dataset.formId || 'modernisierung', error_code: 'submit_failed' });
       } finally {
         button.disabled = false;
@@ -107,18 +107,31 @@
   initDiagnosisQuiz(document.querySelector('[data-fit-quiz]'), {
     toolId: 'kuechenfit_check',
     evaluate: (answers) => {
-      const needsComparison = answers.anliegen === 'Ich weiß nicht, ob Modernisieren noch sinnvoll ist' || answers.aufteilung === 'Nein' || answers.zustand === 'Mehrere Bauteile sind deutlich beschädigt';
-      const fitsWell = answers.aufteilung === 'Ja' && (answers.zustand === 'Korpusse und Fronten sind grundsätzlich intakt' || answers.zustand === 'Es gibt kleinere Schäden');
-      if (needsComparison) return { outcome: 'vergleich', badgeText: 'Vergleich empfohlen', resultText: 'Bei deinem Umfang sollten Modernisierung und Neuplanung ehrlich verglichen werden. Wenn mehrere Bauteile, die Aufteilung und die Technik betroffen sind, ist eine Modernisierung nicht automatisch die wirtschaftlichere Lösung.' };
-      if (fitsWell) return { outcome: 'gezielt', badgeText: 'Gezielte Modernisierung möglich', resultText: 'Bei deiner Küche könnte eine gezielte Modernisierung sinnvoll sein. Da die grundsätzliche Aufteilung noch passt, sollten zunächst die betroffenen Oberflächen und Bauteile geprüft werden.' };
-      return { outcome: 'pruefen', badgeText: 'Zustand vorab prüfen', resultText: 'Der genaue Zustand entscheidet, ob eine Modernisierung ausreicht oder weitere Bauteile betroffen sind. Das lässt sich am besten anhand von Fotos einschätzen.' };
+      const heavyDamage = answers.zustand === 'Mehrere Bauteile sind deutlich beschädigt';
+      const layoutBroken = answers.aufteilung === 'Nein';
+      const layoutOk = answers.aufteilung === 'Ja' || answers.aufteilung === 'Teilweise';
+      const goodSubstance = answers.zustand === 'Korpusse und Fronten sind grundsätzlich intakt' || answers.zustand === 'Es gibt kleinere Schäden';
+      const wantsUmbau = answers.umbauumfang === 'Die Küche soll deutlich umgebaut werden';
+      const wantsPartialChange = answers.umbauumfang === 'Einzelne Bereiche sollen verändert werden';
+      const unsure = answers.anliegen === 'Ich weiß nicht, ob eine Renovierung noch sinnvoll ist'
+        || answers.zustand === 'Kann ich nicht beurteilen'
+        || answers.umbauumfang === 'Kann ich noch nicht beurteilen';
+
+      if ((heavyDamage && layoutBroken) || (layoutBroken && wantsUmbau)) {
+        return { outcome: 'vergleich', badgeText: 'Mit Neuplanung vergleichen', resultText: 'Wenn Substanz und Aufteilung nicht mehr passen und ohnehin viel verändert werden soll, sollten Renovierung und Neuplanung ehrlich verglichen werden. Genau diese Abwägung nehmen wir in der Bestandsprüfung vor.' };
+      }
+      if (goodSubstance && !layoutBroken && (wantsUmbau || wantsPartialChange)) {
+        return { outcome: 'umbau', badgeText: 'Küchenumbau prüfen', resultText: 'Die Substanz ist eine gute Grundlage, aber einzelne Bereiche sollen anders angeordnet werden. Dann ist ein gezielter Küchenumbau der wahrscheinlich passende Weg – das prüfen wir am Bestand.' };
+      }
+      if (goodSubstance && layoutOk && !unsure) {
+        return { outcome: 'gezielt', badgeText: 'Gezielte Renovierung möglich', resultText: 'Aufteilung und Substanz sprechen für eine gezielte Renovierung: Fronten, Arbeitsplatte, Geräte oder Ausstattung erneuern, während geeignete Teile erhalten bleiben.' };
+      }
+      return { outcome: 'pruefen', badgeText: 'Zustand vorab prüfen', resultText: 'Der genaue Zustand entscheidet, ob eine Renovierung ausreicht oder weitere Bauteile betroffen sind. Das lässt sich am besten anhand von Fotos einschätzen.' };
     },
     prefill: (answers) => {
-      const timeframeSelect = document.querySelector('select[name="zeitpunkt"]');
-      if (timeframeSelect && answers.zeitpunkt) timeframeSelect.value = answers.zeitpunkt;
       const details = document.querySelector('textarea[name="details"]');
       if (details && !details.value) {
-        details.value = `Anliegen: ${answers.anliegen} · Zustand: ${answers.zustand} · Aufteilung passt: ${answers.aufteilung}`;
+        details.value = `Anliegen: ${answers.anliegen} · Zustand: ${answers.zustand} · Aufteilung passt: ${answers.aufteilung} · Umbauwunsch: ${answers.umbauumfang}`;
       }
     }
   });

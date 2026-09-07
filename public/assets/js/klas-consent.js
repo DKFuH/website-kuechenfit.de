@@ -109,8 +109,8 @@
   }
 
   const sections = [{
-    title: 'Deine Datenschutzeinstellungen',
-    description: 'Du entscheidest, welche optionalen Dienste geladen werden. Deine Auswahl kannst du jederzeit im Footer ändern.'
+    title: 'Ihre Datenschutzeinstellungen',
+    description: 'Sie entscheiden, welche optionalen Dienste geladen werden. Ihre Auswahl können Sie jederzeit im Footer ändern.'
   }];
   Object.entries(config.categories).forEach(([categoryId, category]) => {
     sections.push({
@@ -143,8 +143,8 @@
         de: {
           consentModal: {
             label: 'Datenschutzeinstellungen',
-            title: 'Du entscheidest, was geladen wird',
-            description: 'Wir nutzen Cookies und externe Dienste, um dir die bestmögliche Planung und Nutzererfahrung zu bieten. Notwendige Funktionen laufen dafür immer, alles andere startet erst nach deiner Auswahl.',
+            title: 'Sie entscheiden, was geladen wird',
+            description: 'Wir nutzen Cookies und externe Dienste, um Ihnen die bestmögliche Planung und Nutzererfahrung zu bieten. Notwendige Funktionen laufen dafür immer, alles andere startet erst nach Ihrer Auswahl.',
             acceptAllBtn: 'Alle akzeptieren & fortfahren',
             acceptNecessaryBtn: 'Nur essenzielle Cookies',
             showPreferencesBtn: 'Auswahl festlegen',

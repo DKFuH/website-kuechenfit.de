@@ -21,12 +21,14 @@ declare(strict_types=1);
   background: rgba(255, 255, 255, 0.14);
 }
 </style>
-<footer class="landing-mini-footer" aria-label="Rechtliche Informationen">
-  <span>© <?= date('Y') ?> KüchenFit – ein Service von Klas Küchen</span>
-  <nav aria-label="Rechtliche Links">
+<footer class="landing-mini-footer" aria-label="Fußbereich">
+  <span>© <?= date('Y') ?> KüchenFit – ein Service von Klas Küchen®</span>
+  <nav aria-label="Weitere Seiten">
+    <a href="/kuechenrenovierung/" data-track="landing_footer_renovierung">Küchenrenovierung</a>
     <a href="/impressum/" data-track="landing_footer_impressum">Impressum</a>
     <a href="/datenschutz/" data-track="landing_footer_datenschutz">Datenschutz</a>
     <button type="button" data-cc="show-preferencesModal" class="landing-mini-footer__button">Datenschutz-Einstellungen</button>
   </nav>
+  <span class="landing-mini-footer__credit">Webdesign by <a href="http://yellowsnapperdesign.de" target="_blank" rel="noopener">YellowSnapper Design</a></span>
 </footer>
 <?php require __DIR__ . '/tracking.php'; ?>
